@@ -1,0 +1,16 @@
+2c059fb1fad3574576fccfe7a988bd41 *DESCRIPTION
+dda783293bd086ffebf218fc3e750d76 *NAMESPACE
+afebe5a279e3a155483c0eab3c66f0b7 *NEWS
+a2019b193d89d79701abba21bf8a0c9c *R/knapsack.R
+6ee743bf5f43dac47d951525bc474246 *R/maxsub.R
+604437dbfd146f590a9772fd2389a086 *R/simpleEA.R
+eb7a19c4093585e2d79a6a5175f11e7e *R/subsetsum.R
+0d573ce463e89fbfd96e95369d8e958a *R/trefethen.R
+bf83b413dab434f03d23d9c28c0079db *man/adagio-package.Rd
+3f208a3ad7c06b0b081008db5c9342b6 *man/knapsack.Rd
+375b61b1b6862f02d9ed09394c885647 *man/maxsub.Rd
+a8357a5f7f686dd627d963d1a6dfd2fd *man/simpleEA.Rd
+743f55fec1748330c20c0b0b16385326 *man/subsetsum.Rd
+602faedee3dfeb02ee77c7fc56ce4f40 *man/trefethen.Rd
+780d3288cfda5d030fe5669630fa20ec *src/maxsubf.f
+418188af7e38bead4f17b10212a3fab5 *src/ratfor/maxsubf.r

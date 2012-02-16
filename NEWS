@@ -1,0 +1,30 @@
+------------------------------------------------------------------------------
+  adagio                                                                NEWS
+------------------------------------------------------------------------------
+
+
+Changes in Version 0.2.8 (2012-02-16)
+
+    o knapsack() solves the 0-1 (binary) single knapsack problem
+      using the dynamic programming approach.
+    o subsetsum() now with 'greedy' and 'dynamic' methods.
+
+Changes in Version 0.2.5 (2012-01-25)
+
+    o maxsub2d() maximal sum subrectangle problem;
+      uses Fortran code to be able to handle 1000-by-1000 matrices.
+
+Changes in Version 0.2.0 (2012-01-14)
+
+    o maxsub() maximal sum subarray (with Ratfor and Fortran code).
+    o subsetsum() Subset sum routine written in R.
+
+Changes in Version 0.1.6 (2012-01-07)
+
+    o Set up as package on R-Forge, part of the Optimist project.
+
+Changes in Version 0.1.5 (2011-07-27)
+
+    o simpleEA(), simple evolutionary algorithm for minimum finding.
+    o Test functions trefethen() and wagon().
+    o Setting up the package structure and required files.
