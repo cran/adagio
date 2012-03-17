@@ -31,6 +31,9 @@ knapsack(w, p, cap)
   HwB  email: <hwborchers@googlemail.com>
 }
 \references{
+  Papadimitriou, C. H., and K. Steiglitz (1998). Combinatorial Optimization:
+  Algorithms and Complexity. Dover Publications 1982, 1998.
+
   Horowitz, E., and S. Sahni (1978). Fundamentals of Computer Algorithms.
   Computer Science Press, Rockville, ML.
 }
