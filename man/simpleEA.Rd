@@ -7,15 +7,23 @@
   Simple Evolutionary Algorithm for Minimization.
 }
 \usage{
-simpleEA(fun, lower, upper, N = 100, eps = 1e-06, scl = 1/2, log = TRUE)
+simpleEA(fn, lower, upper, N = 100, ..., con = 0.1, new = 0.05,
+         tol = 1e-10, eps = 1e-07, scl = 1/2, confined = FALSE, log = FALSE)
 }
 \arguments{
-  \item{fun}{the objective function to be minimized.}
+  \item{fn}{the objective function to be minimized.}
   \item{lower}{vector of lower bounds for all coordinates.}
   \item{upper}{vector of upper bounds for all coordinates.}
   \item{N}{number of children per parent.}
+  \item{...}{additional parameters to be passed to the function.}
+  \item{con}{percentage of individuals concentrating to the best parents.}
+  \item{new}{percentage of new individuals not focussed on existing parents.}
+  \item{tol}{tolerance; if in the last three loops no better individuals
+             were found up to this tolerance, stop.}
   \item{eps}{grid size bound to be reached.}
   \item{scl}{scaling factor for shrinking the grid.}
+  \item{confined}{logical; shall the set of individuals be strictly
+                  respect the boundary? Default: FALSE.}
   \item{log}{logical, should best solution found be printed per step.}
 }
 \details{
@@ -25,7 +33,7 @@ simpleEA(fun, lower, upper, N = 100, eps = 1e-06, scl = 1/2, log = TRUE)
   generation.
 
   The scale shrinks the generation of new points as the algorithm proceeds.
-  It is possible for some children to lie outside the givem rectangle, and
+  It is possible for some children to lie outside the given rectangle, and
   therefore the final result may lie outside the unit rectangle well.
   (TO DO: Make this an option.)
 }
@@ -33,7 +41,9 @@ simpleEA(fun, lower, upper, N = 100, eps = 1e-06, scl = 1/2, log = TRUE)
   List with the following components:
   \item{par}{numeric vector representing the minimum found.}
   \item{val}{function value at the minimum found.}
-  \item{scl}{last scaling factor indicating grid size in last step.}
+  \item{fun.calls}{number of function calls made.}
+  \item{rel.scl}{last scaling factor indicating grid size in last step.}
+  \item{rel.tol}{relative tolerance within the last three minima found.}
 }
 \references{
   Stan Wagon. ``Think Globally, Act Locally". Chapter 4 In: F. Bornemann,

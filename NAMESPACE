@@ -5,12 +5,15 @@
 useDynLib(adagio)
 
 # Public routines
-export(simpleEA)
+export(simpleEA, simpleDE)
 export(trefethen, wagon)
 
 export(maxsub, maxsub2d)
 export(subsetsum, knapsack)
 export(maxempty)
 export(mknapsack, assignment)
+export(rastrigin, rosenbrock)
+export(transfinite)
+export(nelmin, nelminb)
 
 # S3/S4 Methods

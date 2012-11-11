@@ -3,42 +3,51 @@
 ------------------------------------------------------------------------------
 
 
-Changes in Version 0.3.5 (2012-03-17)
+Changes in Version 0.4.3 (2012-11-11)
+    o nelmin(), nelminb() Nelder-Mead function minimization according to 
+    O'Neill (Fortran code) and J. Burghardt (Matlab code, under LGPL licence).
+    o transfinite() transformation function between bounded and unbounded
+      (box constraint) regions.
 
+Changes in Version 0.4.0 (2012-10-01)
+    o rastrigin(), rosenbrock() as test functions.
+
+Changes in Version 0.3.9 (2012-06-19)
+    o simpleEA() and simpleDE() improved, with boundary conditions.
+    o simpleEA() speed improved, with new parameters and options.
+
+Changes in Version 0.3.7 (2012-03-24)
+    o simpleDE() simple differential evolution algorithm for
+      function minimization.
+
+Changes in Version 0.3.5 (2012-03-17)
     o assignment() solves the linear (sum) assignment problem (LSAP)
       for integer square cost matrices.
 
 Changes in Version 0.3.3 (2012-03-14)
-
     o maxempty() solves the maximal empty rectangle problem.
 
 Changes in Version 0.3.1 (2012-03-12)
-
     o mknapsack() solves the multiple knapsack problem, utilizing free
       Fortran code from the NSCW library of Mathematics Subroutines.
 
 Changes in Version 0.2.8 (2012-02-16)
-
     o knapsack() solves the 0-1 (binary) single knapsack problem
       using the dynamic programming approach.
     o subsetsum() now with 'greedy' and 'dynamic' methods.
 
 Changes in Version 0.2.5 (2012-01-25)
-
     o maxsub2d() maximal sum subrectangle problem;
       uses Fortran code to be able to handle 1000-by-1000 matrices.
 
 Changes in Version 0.2.0 (2012-01-14)
-
     o maxsub() maximal sum subarray (with Ratfor and Fortran code).
     o subsetsum() Subset sum routine written in R.
 
 Changes in Version 0.1.6 (2012-01-07)
-
     o Set up as package on R-Forge, part of the Optimist project.
 
 Changes in Version 0.1.5 (2011-07-27)
-
     o simpleEA(), simple evolutionary algorithm for minimum finding.
     o Test functions trefethen() and wagon().
     o Setting up the package structure and required files.
