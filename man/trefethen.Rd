@@ -44,3 +44,5 @@ wagon(p3)
   contour(x, y, T, add=TRUE)
 }
 }
+
+\keyword{ testfunctions }

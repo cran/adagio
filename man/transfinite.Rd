@@ -47,10 +47,10 @@ rosen <- function(x) {
     x1 <- x[2:n]; x2 <- x[1:(n-1)]
     sum(100*(x1-x2^2)^2 + (1-x2)^2)
 }
-f  <- function(x) rosen(hinv(x))   # f must be defined on all of R^n
-x0 <- c(0.1, 0.1, 0.1)          # starting point not on the boundary!
-nm <- nelder_mead(h(x0), f)     # unconstraint Nelder-Mead
-hinv(nm$xmin); nm$fmin             # box/bound constraint solution
+f  <- function(x) rosen(hinv(x))    # f must be defined on all of R^n
+x0 <- c(0.1, 0.1, 0.1)              # starting point not on the boundary!
+nm <- nelder_mead(h(x0), f)         # unconstraint Nelder-Mead
+hinv(nm$xmin); nm$fmin              # box/bound constraint solution
 # [1] 0.7085596 0.5000000 0.2500004
 # [1] 0.3353605
 }

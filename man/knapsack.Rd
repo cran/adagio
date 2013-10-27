@@ -55,4 +55,4 @@ cap <- 50
 (is <- knapsack(w, p, cap))
 # [1] 1 4 , capacity 50 and total profit 107
 }
-\keyword{ optimization }
+\keyword{ optimize }

@@ -1,47 +1,97 @@
 \name{Testfunctions}
-\alias{rastrigin}
-\alias{rosenbrock}
+\alias{genTestfn}
 \title{
   Optimization Test Function
 }
 \description{
-  Simple and often used test function defined in higher dimensions.
+  Simple and often used test function defined in higher dimensions and with
+  analytical gradients, especially suited for performance tests. Analytical 
+  gradients are provided with the \code{gr} prefix.
   The dimension is determined by the length of the input vector.
 }
 \usage{
-rastrigin(x)
-rosenbrock(x)
+genTestfn(fname)
 }
 \arguments{
-  \item{x}{numeric vector of some length \code{n >= 2}.}
+  \item{fname}{name of a test function as character string.}
 }
 \details{
-\strong{Rastrigin}:
+Available test functions are:\cr
+Hald, Nesterov, Nesterov1, Rastrigin, Rosenbrock, Shor. 
+
+\bold{Rosenbrock} -- Rosenbrock's famous valley function from 1960. It can
+also be regarded as a least-squares problem:
+\deqn{\sum_{i=1}^{n-1} (1-x_i)^2 + 100 (x_{i+1}-x_i^2)^2}
+\tabular{ll}{
+  No. of Vars.: \tab n >= 2 \cr
+  Bounds: \tab -5.12 <= xi <= 5.12 \cr
+  Local minima: \tab at f(-1, 1, \ldots, 1) for n >= 4 \cr
+  Minimum: \tab 0.0 \cr
+  Solution: \tab xi = 1, i = 1:n \cr
+}
+
+\bold{Nesterov} -- Nesterov's smooth adaptation of Rosenbrock, based on the 
+idea of Chebyshev polynomials. This function is even more difficult to 
+optimize than Rosenbrock's:
+\deqn{(x_1 - 1)^2 / 4 + \sum_{i=1}^{n-1} (1 + x_{i+1} - 2 x_i^2)}
+\tabular{ll}{
+  No. of Vars.: \tab n >= 2 \cr
+  Bounds: \tab -5.12 <= xi <= 5.12 \cr
+  Local minima: ?\cr
+  Minimum: \tab 0.0 \cr
+  Solution: \tab xi = 1, i = 1:n \cr
+}
+
+\bold{Rastrigin} -- Rastrigin's function is a famous, non-convex example from 1989 for global optimization. It is a typical example of a multimodal function with many local minima:
   \deqn{10 n + \sum_1^n (x_i^2 - 10 \cos(2 \pi x_i))}
 \tabular{ll}{
-  No. of Vars.: \tab n >= 1 \cr
+  No. of Vars.: \tab n >= 2 \cr
   Bounds: \tab -5.12 <= xi <= 5.12 \cr
   Local minima: \tab many \cr
   Minimum: \tab 0.0 \cr
   Solution: \tab xi = 0, i = 1:n \cr
 }
-  \strong{Rosenbrock}:
-    \deqn{\sum_{i=1}^{n-1} (1-x_i)^2 + 100 (x_{i+1}-x_i^2)^2}
-  \tabular{ll}{
-    No. of Vars.: \tab n >= 2 \cr
-    Bounds: \tab -5.12 <= xi <= 5.12 \cr
-    Local minima: \tab at f(-1, 1, \ldots, 1) for n >= 4 \cr
-    Minimum: \tab 0.0 \cr
-    Solution: \tab xi = 1, i = 1:n \cr
-  }
+
+\bold{Hald} -- Hald's function is a typical example of a non-smooth test
+function, from Hald and Madsen in 1981.
+\deqn{\max_{1 \le i \le n} \frac{x_1 + x_2 t_i}{1 + x_3 t_i + x_4 t_i^2 + x_5 t_i^3} - \exp(t_i)}
+where \eqn{t_i = -1 + (i - 1)/10} for \eqn{1 \le i \le 21}.
+\tabular{ll}{
+  No. of Vars.: \tab n =5 \cr
+  Bounds: \tab -1 <= xi <= 1 \cr
+  Local minima: \tab ? \cr
+  Minimum: \tab 0.0001223713 \cr
+  Solution: \tab (0.99987763,  0.25358844, -0.74660757,  0.24520150, -0.03749029) \cr
+}
+
+\bold{Shor} -- Shor's function is another typical example of a non-smooth test
+function, a benchmark for Shor's R-algorithm.
+
+
 }
 \value{
-  Returns the value of the function at the specified point.
+  Returns a list with components \code{fn} the function and \code{gr} its
+  gradient. If an analytical gradient is not available, a function computing 
+  the gradient numerically will be provided.
 }
 \references{
-  See the Wikipedia.
+  Search the Internet.
 }
 \examples{
-rastrigin(c(1, 1, 1, 1))
-rosenbrock(c(1, 1, 1, 1))
+x <- runif(5)
+hald <- genTestfn("Hald")
+fn <- hald$fn; gr <- hald$gr
+fn(x); gr(x)
+
+# How is the Rastrigin function defined?
+rast <- genTestfn("rastrigin")
+rast$fn
+
+# Compare analytical and numerical gradient
+shor <- genTestfn("Shor")
+a_gr <- shor$gr
+n_gr <- function(x) adagio:::ns.grad(shor$fn, x)    # internal gradient
+a_gr(x); n_gr(x) 
 }
+
+\keyword{ testfunctions }

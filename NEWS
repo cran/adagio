@@ -3,14 +3,28 @@
 ------------------------------------------------------------------------------
 
 
+Changes in Version 0.5.9 (2013-10-27)
+    o fminviz(), flineviz() visualize multivariate functions at (assumed) 
+      minima or along lines in multidimensional space.
+
+Changes in Version 0.5.7 (2013-09-12)
+    o pureCMAES() Covariance Matrix Adaptation Evolution Strategy
+      with applications to the Remez problem and L1 regression.
+
+Changes in Version 0.5.4 (2013-08-09)
+    o genTestfn() generates optimization test functions:
+      Hald, Nesterov, Nesterov1, Rastrigin, Rosenbrock, Shor.
+    o maxquad() Lemarechal's MAXQUAD test function generator.
+
+Changes in Version 0.5.1 (2013-06-30)
+    o linesearch_ww(), linesearch_sw() Wolfe's weak and strong line search.
+    o qpspecial() special quadratic programming solver.
+
 Changes in Version 0.4.3 (2012-11-11)
     o nelmin(), nelminb() Nelder-Mead function minimization according to 
-    O'Neill (Fortran code) and J. Burghardt (Matlab code, under LGPL licence).
+      O'Neill (Fortran code) and J. Burghardt (Matlab code, LGPL licence).
     o transfinite() transformation function between bounded and unbounded
-      (box constraint) regions.
-
-Changes in Version 0.4.0 (2012-10-01)
-    o rastrigin(), rosenbrock() as test functions.
+      (box constrained) regions.
 
 Changes in Version 0.3.9 (2012-06-19)
     o simpleEA() and simpleDE() improved, with boundary conditions.

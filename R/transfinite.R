@@ -42,5 +42,6 @@ transfinite <- function(lower, upper, n = length(lower)) {
         hix[c4] <- upper[c4] - exp(x[c4])
         return(hix)
     }
+
     return(list(h = h, hinv = hinv))
 }

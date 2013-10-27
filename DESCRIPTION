@@ -1,19 +1,20 @@
 Package: adagio
 Type: Package
 Title: Discrete and Global Optimization Routines
-Version: 0.4.3
-Date: 2012-11-11
-Author: Hans W Borchers
-Maintainer: HwB <hwborchers@googlemail.com>
-Description: The R package 'adagio' will provide methods and algorithms
-        for discrete optimization and (evolutionary) global
-        optimization.
+Version: 0.5.9
+Date: 2013-10-27
+Author: Hans Werner Borchers
+Maintainer: Hans W. Borchers <hwborchers@googlemail.com>
+Description: 
+    The R package 'adagio' will provide methods and algorithms for
+    discrete optimization and (evolutionary) global optimization.
 License: GPL (>= 3)
 LazyLoad: yes
 LazyData: yes
 Repository: CRAN
 Repository/R-Forge/Project: optimist
-Repository/R-Forge/Revision: 248
-Repository/R-Forge/DateTimeStamp: 2012-11-11 21:07:46
-Date/Publication: 2012-11-17 14:11:59
-Packaged: 2012-11-11 23:26:25 UTC; rforge
+Repository/R-Forge/Revision: 320
+Repository/R-Forge/DateTimeStamp: 2013-09-27 13:36:58
+Date/Publication: 2013-09-28 11:50:26
+Packaged: 2013-09-27 14:16:23 UTC; rforge
+NeedsCompilation: yes

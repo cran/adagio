@@ -89,4 +89,4 @@ msr <- maxsub2d(A)
 rect(X[msr$inds[3]], Y[msr$inds[1]], X[msr$inds[4]+1], Y[msr$inds[2]+1])
 }
 }
-\keyword{ optimization }
+\keyword{ optimize }

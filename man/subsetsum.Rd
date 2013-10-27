@@ -75,4 +75,4 @@ prods[is]
 sum(prods[is]) == amount
 # [1] TRUE}
 }
-\keyword{ optimization }
+\keyword{ optimize }
