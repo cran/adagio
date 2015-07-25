@@ -1,7 +1,7 @@
 \name{maxempty}
 \alias{maxempty}
 \title{
-  Maximal Empty Rectangle Problem
+  Maximally Empty Rectangle Problem
 }
 \description{
   Find the largest/maximal empty rectangle, i.e. with largest area, not 
@@ -47,7 +47,7 @@ maxempty(x, y, ax = c(0, 1), ay = c(0, 1))
 \examples{
 N <- 100; set.seed(8237)
 x <- runif(N); y <- runif(N)
-R <- maxempty(c(0,1), c(0,1), x, y)
+R <- maxempty(x, y, c(0,1), c(0,1))
 R
 # $area
 # [1] 0.08238793
@@ -55,7 +55,9 @@ R
 # [1] 0.7023670 0.1797339 0.8175771 0.8948442
 
 \dontrun{
-plot(x, y, pch="+", xlim=c(0,1), ylim=c(0,1), col="darkgray")
+plot(x, y, pch="+", xlim=c(0,1), ylim=c(0,1), col="darkgray",
+      main = "Maximally empty rectangle")
+rect(0, 0, 1, 1, border = "red", lwd = 1, lty = "dashed")
 do.call(rect, as.list(R$rect))
 grid()}
 }

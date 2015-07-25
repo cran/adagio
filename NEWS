@@ -3,6 +3,15 @@
 ------------------------------------------------------------------------------
 
 
+Changes in Version 0.6.1 (2015-07-25)
+
+    o Reorganized test functions; removed genTestfn() and (re-)introduced
+      Rosenbrock, Nesterov, Rastrigin, Hald, Shor with theit true names;
+      prepended with a 'fn' for the function, 'gr' for existing gradients.
+    o Removed linesearch_ww(), linesearch_sw(), and qpspecial() for now.
+    o trefethen(), wagon() renamed to fnTrefethen(), fnWagon().
+    o Corrected a call to maxempty() on the help page.
+
 Changes in Version 0.5.9 (2013-10-27)
     o fminviz(), flineviz() visualize multivariate functions at (assumed) 
       minima or along lines in multidimensional space.

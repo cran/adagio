@@ -87,14 +87,13 @@ nelmin(psf, x0)         #  0 0 0 0, needs maximum number of function calls
 lower <- c(-Inf, 0,   0)
 upper <- c( Inf, 0.5, 1)
 x0 <- c(0, 0.1, 0.1)
-Rosenbrock <- genTestfn("Rosenbrock")$fn
-nelminb(Rosenbrock, c(0, 0.1, 0.1), lower, upper)
+nelminb(fnRosenbrock, c(0, 0.1, 0.1), lower, upper)
 # $xmin = c(0.7085595, 0.5000000, 0.2500000)
 # $fmin = 0.3353605
 
 \dontrun{
 # Can run Rosenbrock's function in 30 dimensions in one and a half minutes:
-nelmin(Rosenbrock, rep(0, 30), tol=1e-20, maxfeval=10^7)
+nelmin(fnRosenbrock, rep(0, 30), tol=1e-20, maxfeval=10^7)
 # $xmin
 #  [1]  0.9999998 1.0000004 1.0000000 1.0000001 1.0000000 1.0000001
 #  [7]  1.0000002 1.0000001 0.9999997 0.9999999 0.9999997 1.0000000

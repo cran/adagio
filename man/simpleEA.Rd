@@ -61,7 +61,7 @@ simpleEA(fn, lower, upper, N = 100, ..., con = 0.1, new = 0.05,
   \code{DEoptim} in the `DEoptim' package.
 }
 \examples{
-  simpleEA(trefethen, lower=c(-1,-1), upper=c(1,1), log=FALSE)
+  simpleEA(fnTrefethen, lower=c(-1,-1), upper=c(1,1), log=FALSE)
   # $par
   # [1] -0.02440310  0.21061243  # this is the true global optimum!
   # $val

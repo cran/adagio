@@ -3,25 +3,6 @@
 ##
 
 
-genTestfn <- function(fname) {
-	fname <- tolower(fname)
-	tfunc <- switch(fname,
-					hald = list(fn = fnHald, gr = grHald),
-	                nesterov = list(fn = fnNesterov, gr = grNesterov),
-	                nesterov1 = list(fn = fnNesterov1, gr = grNesterov1),
-	                rastrigin = list(fn = fnRastrigin, gr = grRastrigin),
-	                rosenbrock = list(fn = fnRosenbrock, gr = grRosenbrock),
-					shor = list(fn = fnShor, gr = grShor),
-			 stop("Argument 'fname' not the name of a known test function.")
-		     )
-	if (is.null(tfunc$gr)) {
-		cat("'fname': numerical gradient will be computed.\n")
-		tfunc$gr <- function(x) ns.grad(tfunc$fn, x)
-	}
-	return(tfunc)
-}
-
-
 #-- Rosenbrock's non-convex performance test function ------------------------
 fnRosenbrock <- function(x) {
     n <- length(x)
@@ -42,6 +23,7 @@ grRosenbrock <- function(x) {
     g
 }
 
+
 #-- Rastrigin's function -----------------------------------------------------
 fnRastrigin <- function(x) {
     n <- length(x)
@@ -51,6 +33,7 @@ fnRastrigin <- function(x) {
 grRastrigin <- function(x) {
     2 * x + 20 * pi * sin(2 * pi * x)
 }
+
 
 #-- Nesterov's smooth Chebyshev-Rosenbrock function --------------------------
 fnNesterov <- function(x) {
@@ -74,6 +57,7 @@ grNesterov <- function(x) {
     g
 }
 
+
 #-- Nesterov's non-smooth Chebyshev-Rosenbrock functions ---------------------
 fnNesterov1 <- function(x) {
     n <- length(x)
@@ -83,17 +67,7 @@ fnNesterov1 <- function(x) {
     }
     f
 }
-grNesterov1 <- function(x) {
-    n <- length(x)
-    g <- rep(NA, n)
-    g[1] <- -(1 - x[1]) / 2
-    for (i in 1:(n-1)) {
-        r <- sign(1 + x[i+1] - 2*x[i]^2)
-        g[i+1] <- g[i+1] + r
-        g[i] <- g[i] - 4*x[i]*r
-    }
-    g
-}
+
 
 #-- Non-smooth test function of Hald and Madsen ------------------------------
 # xmin = (0.99987763,  0.25358844, -0.74660757,  0.24520150, -0.03749029 )
@@ -125,6 +99,7 @@ grHald <- function(x) {
     g
 }
 
+
 #-- Shor's piecewise quadratic function --------------------------------------
 # starting value c(1,1,1,1,1) in [0, 2]^5
 # xmin = (1.1243510, 0.9794616, 1.4777077, 0.9202335, 1.1242916)
@@ -147,6 +122,7 @@ fnShor <- function(x) {
     }
     f
 }
+
 grShor <- function(x) {
     stopifnot(is.numeric(x), length(x) == 5)
     x <- as.matrix(c(x))

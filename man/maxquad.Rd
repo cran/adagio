@@ -34,9 +34,6 @@ maxquad(n, m)
   Shor, N. Z. (1985). Minimization Methods for Non-differentiable Functions.
   Series in Computational Mathematics, Springer-Verlag, Berlin.
 }
-\seealso{
-  \code{\link{genTestfn}}
-}
 \examples{
 # Test function of 5 variables, defined as maximum of 5 smooth functions
 maxq <- maxquad(5, 5)

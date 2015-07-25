@@ -1,6 +1,6 @@
-\name{trefethen}
-\alias{trefethen}
-\alias{wagon}
+\name{SIAM test functions}
+\alias{fnTrefethen}
+\alias{fnWagon}
 \title{
   Trefethen and Wagon Test Functions
 }
@@ -9,8 +9,8 @@
   challenge in 2002 by Nick Trefethen, Oxford University, UK.
 }
 \usage{
-trefethen(p2)
-wagon(p3)
+fnTrefethen(p2)
+fnWagon(p3)
 }
 \arguments{
   \item{p2}{Numerical vector of length 2.}
@@ -33,16 +33,20 @@ wagon(p3)
   HwB  <hwborchers@googlemail.com>
 }
 \examples{
-\dontrun{
+  x <- 2*runif(5) - 1
+  fnTrefethen(x)
+  fnWagon(x)
+
+  \dontrun{
   T <- matrix(NA, nrow=1001, ncol=1001)
   for (i in 1:1001) {
     for (j in 1:1001) {
-        T[i, j] <- trefethen(c(x[i], y[j]))
+        T[i, j] <- fnTrefethen(c(x[i], y[j]))
     }
   }
   image(x, y, T)
   contour(x, y, T, add=TRUE)
-}
+  }
 }
 
 \keyword{ testfunctions }

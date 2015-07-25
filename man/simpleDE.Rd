@@ -49,7 +49,7 @@ simpleDE(fun, lower, upper, N = 64, nmax = 256, r = 0.4,
   \code{\link{simpleEA}}, \code{DEoptim} in the `DEoptim' package.
 }
 \examples{
-  simpleDE(trefethen, lower = c(-1,-1), upper = c(1,1))
+  simpleDE(fnTrefethen, lower = c(-1,-1), upper = c(1,1))
   # $fmin
   # [1] -3.306869
   # $xmin

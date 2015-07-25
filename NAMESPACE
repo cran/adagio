@@ -4,28 +4,29 @@
 
 useDynLib(adagio)
 
+importFrom("graphics", "grid", "lines", "plot", "points")
+importFrom("stats", "rnorm", "runif")
+
 # Public routines
-export(simpleEA, simpleDE)
-export(trefethen, wagon)
+export(fnRosenbrock, grRosenbrock,
+       fnRastrigin, grRastrigin,
+       fnNesterov, grNesterov, fnNesterov1,
+       fnHald, grHald, fnShor, grShor)
+export(fnTrefethen, fnWagon)
+export(maxquad)
 
 export(maxsub, maxsub2d)
-export(subsetsum, knapsack)
 export(maxempty)
+
+export(subsetsum, knapsack)
 export(mknapsack, assignment)
+
 export(transfinite)
 export(nelmin, nelminb)
 
+export(simpleEA, simpleDE)
 export(pureCMAES)
 
 export(fminviz, flineviz)
-
-export(qpspecial)
-export(linesearch_ww, linesearch_sw)
-# export(bfgsmin)
-# export(cgmin)
-# export(ralg)
-
-export(genTestfn)
-export(maxquad)
 
 # S3/S4 Methods

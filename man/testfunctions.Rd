@@ -1,24 +1,41 @@
 \name{Testfunctions}
-\alias{genTestfn}
+\alias{fnRosenbrock}
+\alias{grRosenbrock}
+\alias{fnRastrigin}
+\alias{grRastrigin}
+\alias{fnNesterov}
+\alias{grNesterov}
+\alias{fnNesterov1}
+\alias{fnHald}
+\alias{grHald}
+\alias{fnShor}
+\alias{grShor}
 \title{
-  Optimization Test Function
+  Optimization Test Functions
 }
 \description{
   Simple and often used test function defined in higher dimensions and with
   analytical gradients, especially suited for performance tests. Analytical 
-  gradients are provided with the \code{gr} prefix.
+  gradients, where existing, are provided with the \code{gr} prefix.
   The dimension is determined by the length of the input vector.
 }
 \usage{
-genTestfn(fname)
+fnRosenbrock(x)
+grRosenbrock(x)
+fnRastrigin(x)
+grRastrigin(x)
+fnNesterov(x)
+grNesterov(x)
+fnNesterov1(x)
+fnHald(x)
+grHald(x)
+fnShor(x)
+grShor(x)
 }
 \arguments{
-  \item{fname}{name of a test function as character string.}
+  \item{x}{numeric vector of a certain length.}
 }
 \details{
-Available test functions are:\cr
-Hald, Nesterov, Nesterov1, Rastrigin, Rosenbrock, Shor. 
-
 \bold{Rosenbrock} -- Rosenbrock's famous valley function from 1960. It can
 also be regarded as a least-squares problem:
 \deqn{\sum_{i=1}^{n-1} (1-x_i)^2 + 100 (x_{i+1}-x_i^2)^2}
@@ -66,32 +83,22 @@ where \eqn{t_i = -1 + (i - 1)/10} for \eqn{1 \le i \le 21}.
 
 \bold{Shor} -- Shor's function is another typical example of a non-smooth test
 function, a benchmark for Shor's R-algorithm.
-
-
 }
 \value{
-  Returns a list with components \code{fn} the function and \code{gr} its
-  gradient. If an analytical gradient is not available, a function computing 
-  the gradient numerically will be provided.
+  Returns the values of the test function resp. its gradient at that point.
+  If an analytical gradient is not available, a function computing the gradient 
+  numerically will be provided.
 }
 \references{
   Search the Internet.
 }
 \examples{
 x <- runif(5)
-hald <- genTestfn("Hald")
-fn <- hald$fn; gr <- hald$gr
-fn(x); gr(x)
-
-# How is the Rastrigin function defined?
-rast <- genTestfn("rastrigin")
-rast$fn
+fnHald(x); grHald(x)
 
 # Compare analytical and numerical gradient
-shor <- genTestfn("Shor")
-a_gr <- shor$gr
-n_gr <- function(x) adagio:::ns.grad(shor$fn, x)    # internal gradient
-a_gr(x); n_gr(x) 
+shor_gr <- function(x) adagio:::ns.grad(fnShor, x)    # internal gradient
+grShor(x); shor_gr(x) 
 }
 
 \keyword{ testfunctions }
