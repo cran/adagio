@@ -6,6 +6,7 @@ useDynLib(adagio)
 
 importFrom("graphics", "grid", "lines", "plot", "points")
 importFrom("stats", "rnorm", "runif")
+importFrom("quadprog", "solve.QP")
 
 # Public routines
 export(fnRosenbrock, grRosenbrock,
@@ -17,16 +18,16 @@ export(maxquad)
 
 export(maxsub, maxsub2d)
 export(maxempty)
-
 export(subsetsum, knapsack)
 export(mknapsack, assignment)
 
-export(transfinite)
 export(nelmin, nelminb)
-
 export(simpleEA, simpleDE)
 export(pureCMAES)
-
 export(fminviz, flineviz)
+export(transfinite)
+
+export(lsqlincon)
+export(hamiltonian)
 
 # S3/S4 Methods
