@@ -47,7 +47,7 @@ fnNesterov <- function(x) {
 
 grNesterov <- function(x) {
     n <- length(x)
-    g <- rep(NA, n)
+    g <- rep(0, n)
     g[1] <- (x[1] - 1) / 2
     for (i in 1:(n-1)) {
         r = 1 + x[i+1] - 2*x[i]^2

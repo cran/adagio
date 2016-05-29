@@ -3,13 +3,14 @@
 ------------------------------------------------------------------------------
 
 
+Changes in Version 0.6.5 (2016-05-29)
+
+    o corrected an error in grNesterov(), as indicated by John Nash.
+
 Changes in Version 0.6.3 (2015-12-06)
 
     o hamiltonian() finds a Hamiltonian path or cycle in a graph given
-      as a vector of edges (see the ’igraph’ package) or an edge list.
-    o lsqlincon() solves linear least-squares problems with linear equality
-      and inequality constraints, as well as bound constraints, internally
-      applying solve.QP from the 'quadprog' package (which is imported).
+      as a vector of edges (see the 'igraph' package) or an edge list.
 
 Changes in Version 0.6.1 (2015-07-25)
 

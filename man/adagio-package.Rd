@@ -13,8 +13,8 @@
 \tabular{ll}{
 Package: \tab adagio\cr
 Type: \tab Package\cr
-Version: \tab 0.2.0\cr
-Date: \tab 2012-01-14\cr
+Version: \tab 0.6.4\cr
+Date: \tab 2015-12-07\cr
 License: \tab GPL (>= 3)\cr
 LazyLoad: \tab yes\cr
 }
