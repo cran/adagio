@@ -17,6 +17,7 @@ function(fun, lower, upper, N = 64, nmax = 256, r = 0.4,
     G <- matrix(runif(N*n), nrow = N, ncol = n)
     H <- G <- L + G * (U - L)
     F <- apply(G, 1, fun)
+	nfeval <- N
 
     for (g in 1:nmax) {
         for (i in 1:N) {
@@ -30,6 +31,7 @@ function(fun, lower, upper, N = 64, nmax = 256, r = 0.4,
             }
 
             fi <- fun(ci)
+			nfeval <- nfeval + N
             if (fi < F[i]) {
                 H[i, ] <- ci
                 F[i] <- fi
@@ -42,5 +44,5 @@ function(fun, lower, upper, N = 64, nmax = 256, r = 0.4,
     }
 
     i0 <- which.min(F)
-    return( list(fmin = F[i0], xmin = G[i0, ]) )
+    return( list(fmin = F[i0], xmin = G[i0, ], nfeval = nfeval) )
 }

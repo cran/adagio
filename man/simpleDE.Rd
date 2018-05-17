@@ -32,6 +32,7 @@ simpleDE(fun, lower, upper, N = 64, nmax = 256, r = 0.4,
   List with the following components:
   \item{fmin}{function value at the minimum found.}
   \item{xmin}{numeric vector representing the minimum.}
+  \item{nfeval}{number of function calls.}
 }
 \references{
   Dirk Laurie. ``A Complex Optimization". Chapter 5 In: F. Bornemann,

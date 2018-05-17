@@ -3,6 +3,26 @@
 ------------------------------------------------------------------------------
 
 
+Changes in Version 0.7.1 (2018-05-16)
+
+    o Removed 'adagio-package.Rd' on request of K. Hornick, CRAN.
+
+Changes in Version 0.7.0 (2017-06-28)
+
+    o pureCMAES() added a break statement, proposed by R. Biedrzycki.
+
+Changes in Version 0.6.9 (2017-02-07)
+
+	o nelmin(), nelminb() renamed to neldermead(), neldermeadb().
+	o hookejeeves() Hooke-Jeeves minimization (with bound constraints).
+	o Help page of knapsack() did not mention the interger requirement.
+
+Changes in Version 0.6.7 (2017-02-06)
+
+    o nelmin(), nelminb() now use an dimension-adaptive Nelder-Mead
+	  minimization by F. Gao and L. Han.
+	o simpleDE() returns the number of function evaluations.
+
 Changes in Version 0.6.5 (2016-05-29)
 
     o corrected an error in grNesterov(), as indicated by John Nash.

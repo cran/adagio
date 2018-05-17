@@ -1,25 +1,26 @@
 ##
-##  n e l m i n . R  Nelder-Mead function minimization
+##  n e l d e r m e a d . R  Nelder-Mead function minimization
 ##
 
 
-nelmin <- function(fn, x0, tol = 1e-10, ..., 
-            maxfeval = 1e4, step = rep(1.0, length(x0))) {
+neldermead <- function(fn, x0, ..., adapt = TRUE,
+                tol = 1e-10, maxfeval = 1e4, 
+			    step = rep(1.0, length(x0))) {
     stopifnot(is.numeric(x0), is.numeric(step))
     n <- length(x0)
     if (length(step) != n)
         stop("Argument 'step' must be of the same length as 'x0'.")
-
 
     fun <- match.fun(fn)
     fn  <- function(x) fun(x, ...)
 
                         # Inputs:
     start  <- x0        # starting point
-    reqmin <- tol       # the terminating limit for the variance of function values
+    reqmin <- tol       # terminating limit for the variance of function values
     # step <- step      # size and shape of the initial simplex
     kcount <- maxfeval  # maximum number of function evaluations.
-    konvge <- kcount/100# convergence check is carried out every KONVGE iterations, >= 1
+    konvge <- kcount/100# convergence check is carried out every
+	                    #   KONVGE iterations, >= 1
 
                         # Outputs:
     xmin   <- NA        # estimated minimum of the function
@@ -29,10 +30,19 @@ nelmin <- function(fn, x0, tol = 1e-10, ...,
     ifault <- 0         # error indicator, 0, 1, 2
 
     # Constants for Nelder-Mead
-    ccoeff <- 0.5
-    ecoeff <- 2.0
-    eps    <- 0.001
-    rcoeff <- 1.0
+	if (adapt) {
+	    rcoeff <- 1.0               # reflection   1.0
+	    ecoeff <- 1.0 + 2.0/n       # expansion    2.0
+	    ccoeff <- 0.75 - 1.0/(2*n)  # contraction  0.5
+	    scoeff <- 1.0 - 1.0/n       # shrinking    0.5
+	    eps    <- 0.001
+	} else {
+        rcoeff <- 1.0
+        ecoeff <- 2.0
+        ccoeff <- 0.5
+    	scoeff <- 0.5
+        eps    <- 0.001
+    }
     
     jcount <- konvge
     dn <- n
@@ -116,7 +126,7 @@ nelmin <- function(fn, x0, tol = 1e-10, ...,
                     #  Contract the whole simplex.
                     if ( y[ihi] < y2star ) {
                         for (j in 1:nn) {
-                            p[, j] <- (p[, j] + p[, ilo]) / 2
+                            p[, j] <- scoeff * (p[, j] + p[, ilo])
                             xmin <- p[, j]
                             y[j] <- fn ( xmin )
                             icount <- icount + 1
@@ -216,13 +226,15 @@ nelmin <- function(fn, x0, tol = 1e-10, ...,
 } # end of function
 
 
-nelminb <- function (fn, x0, lower, upper, tol = 1e-10, ..., 
-                     maxfeval = 10000, step = rep(1, length(x0))) {
+neldermeadb <- function(fn, x0, ..., lower, upper, adapt = TRUE,
+                        tol = 1e-10, maxfeval = 10000,
+                        step = rep(1, length(x0))) {
 	Trf <- transfinite(lower, upper, length(x0))
 	h <- Trf$h; hinv <- Trf$hinv
 
 	f <- function(x) fn(hinv(x), ...)  # f must be defined on all of R^n
-    S <- nelmin(f, h(x0), tol = tol, maxfeval = maxfeval, step = step)
+    S <- neldermead(f, h(x0), adapt = adapt,
+                    tol = tol, maxfeval = maxfeval, step = step)
     S$xmin <- hinv(S$xmin)
 
     return(S)

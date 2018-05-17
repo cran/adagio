@@ -86,6 +86,7 @@ pureCMAES <- function(par, fun, lower = NULL, upper = NULL, sigma = 0.5,
         if (counteval - eigeneval > lambda/(c1+cmu)/N/10) { # to achieve O(N^2)
             eigeneval <- counteval
             C <- ml.triu(C) + t(ml.triu(C,1))       # enforce symmetry
+            if (any(is.nan(C))) break               # proposed by R.Biedrzycki
             EigVal <- eigen(C, symmetric = TRUE)    # eigen decomposition
             B <- EigVal$vectors
             D <- sqrt(EigVal$values)    # D is a vector of standard deviations now

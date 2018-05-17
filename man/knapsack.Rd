@@ -10,13 +10,13 @@
 knapsack(w, p, cap)
 }
 \arguments{
-  \item{w}{vector of weights.}
-  \item{p}{vector of profits.}
-  \item{cap}{maximal capacity of the knapsack.}
+  \item{w}{integer vector of weights.}
+  \item{p}{integer vector of profits.}
+  \item{cap}{maximal capacity of the knapsack, integer too.}
 }
 \details{
   \code{knapsack} solves the 0-1, or: binary, single knapsack problem by
-  using the synamic programming approach. The problem can be formulated as:
+  using the dynamic programming approach. The problem can be formulated as:
 
   Maximize \code{sum(x*p)} such that \code{sum(x*w) <= cap}, where \code{x}
   is a vector with \code{x[i] == 0 or 1}.
