@@ -3,6 +3,41 @@
 ------------------------------------------------------------------------------
 
 
+Changes in Version 0.8.4 (2021-04-30)
+
+  o bpp_approx() solves the Bin Packing Problem approximately.
+
+Changes in Version 0.8.3 (2021-04-28)
+
+  o Small corrections in subsetsum(); added sss_test() -- no indices.
+    Changed default values of arguments for methods and sorting.
+  o occurs() finds index positions of subsequences in integer sequences.
+  o Removed inactive URL links (Hansen's homepage changed).
+
+Changes in Version 0.8.2 (2021-04-24)
+
+  o setcover() solves the Set Cover problem in discrete optimization.
+  o Added a one-line description for testfunction 'fnNesterov1'.
+  o Corrected help pages for 'knapsack()' and 'mknapsack()'.
+
+Changes in Version 0.8.1 (2021-04-22)
+
+  o Removed Fortran code for 'maxsub()' and 'maxsub2d()'.
+  o 'assignment()' uses 'lp.assign' from the 'lpSolve' package;
+    now numeric cost matrices are allowed, not only integer ones.
+  o 'mknapsack()': Fortran code replaced by a linear program;
+    also interchanged the weight and profit arguments.
+
+Changes in Version 0.8.0 (2021-04-21)
+
+  o Restart 'adagio' by avoiding Fortran code now and forever.
+  o Imports 'lpSolve' for treating mixed-integer linear programs.
+
+
+Changes in Version 0.7.2 (2019-12-12)
+
+    o Corrected maxsub2d() and Fortran, fix provided by Yogesh Bansal.
+
 Changes in Version 0.7.1 (2018-05-16)
 
     o Removed 'adagio-package.Rd' on request of K. Hornick, CRAN.

@@ -3,6 +3,21 @@
 ##
 
 
+# A simple test to find the largest summable value
+sss_test <- function(S, t) {
+    stopifnot(is.numeric(S), is.numeric(t))
+    S = sort(S, decreasing = TRUE)
+    n <- length(S)
+    L <- c(0)
+    for (i in 1:n) {
+        L <- sort(unique(c(L, L + S[i])))
+        L <- L[L <= t]
+        if(max(L) == t) break
+    }
+    return(max(L))
+}
+
+
 # Assume S decreasing, no elements > t, total sum >= t
 subsetsum <- function(S, t, method = "greedy") {
     stopifnot(is.numeric(S), is.numeric(t))
@@ -14,11 +29,11 @@ subsetsum <- function(S, t, method = "greedy") {
         floor(t) != ceiling(t)      || t <= 0) 
         stop("Arguments 'S' and 't' must be positive integer vectors.")
 
-    if (any(S >= t))
-        stop("No element of 'S' shall be greater or equal to 't'.")
+    if (any(S > t))
+        stop("No element of 'S' shall be greater than 't'.")
     if (sum(S) < t) {
         warning("Total sum of 'S' is smaller than 't'; no solution possible.")
-        return(NA)
+        return(list(val = NA, inds = NA))
     }
 
     method <- pmatch(method, c("greedy", "dynamic"))

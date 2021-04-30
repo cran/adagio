@@ -61,3 +61,4 @@ rect(0, 0, 1, 1, border = "red", lwd = 1, lty = "dashed")
 do.call(rect, as.list(R$rect))
 grid()}
 }
+\keyword{ discrete-optimization }

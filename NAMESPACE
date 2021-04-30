@@ -2,10 +2,13 @@
 ##  NAMESPACE
 ##
 
-useDynLib(adagio)
+# Fortran codes
+# useDynLib(adagio)
 
 importFrom("graphics", "grid", "lines", "plot", "points")
 importFrom("stats", "rnorm", "runif")
+
+importFrom(lpSolve, lp, lp.assign)
 
 # Public routines
 export(fnRosenbrock, grRosenbrock,
@@ -15,10 +18,11 @@ export(fnRosenbrock, grRosenbrock,
 export(fnTrefethen, fnWagon)
 export(maxquad)
 
-export(maxsub, maxsub2d)
-export(maxempty)
-export(subsetsum, knapsack)
-export(mknapsack, assignment)
+export(occurs)
+export(maxsub, maxsub2d, maxempty)
+export(assignment, subsetsum, sss_test,
+       setcover, knapsack, mknapsack,
+       bpp_approx)
 
 export(neldermead, neldermeadb)
 export(hookejeeves)

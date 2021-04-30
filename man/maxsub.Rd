@@ -8,7 +8,7 @@ Maximal Sum Subarray
 Find a subarray with maximal positive sum.
 }
 \usage{
-maxsub(x, inds = TRUE, compiled = TRUE)
+maxsub(x, inds = TRUE)
 
 maxsub2d(A)
 }
@@ -16,21 +16,20 @@ maxsub2d(A)
   \item{x}{numeric vector.}
   \item{A}{numeric matrix}
   \item{inds}{logical; shall the indices be returned?}
-  \item{compiled}{logical; shall the compiled version be used?}
 }
 \details{
 \code{maxsub} finds a contiguous subarray whose sum is maximally positive.
-This is sometimes called Kadane's algorithm.\cr
-\code{maxsub} will use a compiled and very fast version with a running time
-of \code{O(n)} where \code{n} is the length of the input vector \code{x}.
+This is sometimes called Kadane's algorithm.
+\code{maxsub} will use a very fast version with a running time of
+\code{O(n)} where \code{n} is the length of the input vector \code{x}.
 
 \code{maxsub2d} finds a (contiguous) submatrix whose sum of elements is
 maximally positive. The approach taken here is to apply the one-dimensional
 routine to summed arrays between all rows of \code{A}. This has a run-time
 of \code{O(n^3)}, though a run-time of \code{O(n^2 log n)} seems possible
-see the reference below.\cr
-\code{maxsub2d} uses a Fortran workhorse and can solve a 1000-by-1000 matrix
-in a few seconds---but beware of biggere ones
+see the reference below.
+\code{maxsub2d} can solve a 100-by-100 matrix in a few seconds --
+but beware of bigger ones.
 }
 \value{
 Either just a maximal sum, or a list this sum as component \code{sum} plus
@@ -47,7 +46,7 @@ Distance Matrix Multiplication. The Australasian Theory Symposion, CATS 2002.
   In special cases, the matrix \code{A} may be sparse or (as in the example
   section) only have one nonzero element in each row and column. Expectation 
   is that there may exists a more efficient (say \code{O(n^2)}) algorithm in 
-  this extreme case.
+  these special cases.
 }
 \author{
   HwB  <hwborchers@googlemail.com>
@@ -56,7 +55,7 @@ Distance Matrix Multiplication. The Australasian Theory Symposion, CATS 2002.
 ##  Find a maximal sum subvector
 set.seed(8237)
 x <- rnorm(1e6)
-system.time(res <- maxsub(x, inds = TRUE, compiled = FALSE))
+system.time(res <- maxsub(x, inds = TRUE))
 res
 
 ##  Standard example: Find a maximal sum submatrix
@@ -89,4 +88,4 @@ msr <- maxsub2d(A)
 rect(X[msr$inds[3]], Y[msr$inds[1]], X[msr$inds[4]+1], Y[msr$inds[2]+1])
 }
 }
-\keyword{ optimize }
+\keyword{ discrete-optimization }

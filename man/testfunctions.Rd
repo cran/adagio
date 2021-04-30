@@ -59,6 +59,8 @@ optimize than Rosenbrock's:
   Solution: \tab xi = 1, i = 1:n \cr
 }
 
+\bold{Nesterov1} -- Simlar to \code{Nesterov}, except the terms added are taken with absolute value, which makes this function nonsmooth and painful for gradient-based optimization routines; no gradient prpovided.
+
 \bold{Rastrigin} -- Rastrigin's function is a famous, non-convex example from 1989 for global optimization. It is a typical example of a multimodal function with many local minima:
   \deqn{10 n + \sum_1^n (x_i^2 - 10 \cos(2 \pi x_i))}
 \tabular{ll}{

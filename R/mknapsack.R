@@ -1,39 +1,61 @@
-mknapsack <- function(p, w, k, bck = -1) {
-    stopifnot(is.numeric(p), is.numeric(w), is.numeric(k))
-    if (any(w <= 0))
-        stop("'weights' must be a vector of positive numbers.")
-    if (any(p <= 0))
-        stop("'profits' must be a vector of positive numbers.")
+# w <- c( 40,  60, 30, 40, 20, 5)
+# p <- c(110, 150, 70, 80, 30, 5)
+# cap <- 90  # c(65, 85)
 
-    if (any(floor(p) != ceiling(p)) ||
-        any(floor(w) != ceiling(w)) ||
-        any(floor(k) != ceiling(k)) ||
-        any(p >= 2^31) || any(w >= 2^31) || any(k >= 2^31))
-        stop("All inputs must be positive integers < 2^31 !")
+mknapsack <- function(w, p, cap) {
+    stopifnot(is.numeric(p), is.numeric(w), is.numeric(cap))
+    if (any(w <= 0) || any(p <= 0))
+        stop("Profits 'w' and weights 'p' must be vectors of positive numbers.")
 
-    n <- length(p); m <- length(k)
+    m <- length(cap)
+    n <- length(p)  # == length(w)
     if (length(w) != n)
-        stop("Profit 'p' and weight 'w' must be vectors of equal length.")
-    # bck <- -1, i.e., request exact solution,
-    # else maximal number of allowed backtrackings
+        stop("Profits 'p' and weights 'w' must be vectors of equal length.")
 
-    xstar <- vector("integer", n)   # no. of knapsack item 'i' is assigned to
-    vstar <- 0                      # value of optimal solution
-    
-    # dummy variables
-    num <- 5*m + 14*n + 4*m*n + 3
-    wk  <- numeric(n)
-    iwk <- vector("integer", num)
+    if (n == 1) {
+        inds <- which(cap >= w)
+        if (length(inds) == 0) {
+            return(list(ksack = 0, val = 0))
+        } else {
+            ind <- inds[1]
+            return(list(ksack = ind, val = p, bs = 0))
+        }
+    }
 
-    S <- .Fortran("mkp", as.integer(n), as.integer(m),
-                    as.integer(p), as.integer(w), as.integer(k),
-                    bs = as.integer(bck),
-                    xs = as.integer(xstar), vs = as.integer(vstar),
-                    as.numeric(wk), as.integer(iwk), as.integer(num),
-                    PACKAGE = 'adagio')
+    if (m == 1) {
+        sol <- lp(direction = "max",
+                  objective.in = p,
+                  const.mat = matrix(w, nrow = 1),
+                  const.dir = "<=",
+                  const.rhs = cap,
+                  all.bin = TRUE)
+        return(list(ksack = sol$solution, val = sol$objval, bs = 0))
+    }
 
-    if (S$vs < 0)
-        warning("Error condition raised: check input data ...!")
+    obj <- rep(p, m)
+    cm1 <- matrix(0, nrow = m, ncol = m * n)
+    for (k in 1:m) {
+        cm1[k, ((k-1)*n+1):(k*n)] <- w
+    }
+    cm2 <- diag(1, n)
+    for (k in 2:m) {
+        cm2 <- cbind(cm2, diag(1, n))
+    }
+    cm <- rbind(cm1, cm2)
 
-    return(list(ksack = S$xs, value = S$vs, btracks = S$bs))
+    sol <- lp(direction = "max",
+              objective.in = obj,
+              const.mat = cm,
+              const.dir = rep("<=", n + m),
+              const.rhs = c(cap, rep(1, n)),
+              all.bin = TRUE)
+
+    sls = sol$solution
+    my = sls[1:n]
+    for (k in 2:m) {
+        my = my + k * sls[((k-1)*n+1):(k*n)]
+    }
+
+    return(list(ksack = my, val = sol$objval, bs = 0))
 }
+

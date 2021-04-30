@@ -105,4 +105,4 @@ if (N == 23) {
     hamiltonian(sq_edges)
 }}
 }
-\keyword{ graphs }
+\keyword{ graph-algorithms }

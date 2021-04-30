@@ -20,12 +20,12 @@ knapsack(w, p, cap)
 
   Maximize \code{sum(x*p)} such that \code{sum(x*w) <= cap}, where \code{x}
   is a vector with \code{x[i] == 0 or 1}.
+
+  Knapsack procedures can even solve subset sum problems,
+  see the examples 3 and 3' below.
 }
 \value{
   A list with components \code{capacity}, \code{profit}, and \code{indices}.
-}
-\note{
-  Will be replaced by a compiled version.
 }
 \author{
   HwB  email: <hwborchers@googlemail.com>
@@ -54,5 +54,26 @@ w <- c(31, 10, 20, 19, 4, 3,  6)
 cap <- 50
 (is <- knapsack(w, p, cap))
 # [1] 1 4 , capacity 50 and total profit 107
+
+\dontrun{
+##  Example 3: subset sum
+p <- seq(2, 44, by = 2)^2
+w <- p
+is <- knapsack(w, p, 2012)
+p[is$indices]  # 16  36  64 144 196 256 324 400 576
+
+##  Example 3': maximize number of items
+#   w <- seq(2, 44, by = 2)^2
+#   p <- numeric(22) + 1
+#  is <- knapsack(w, p, 2012)
+
+## Example 4 from Rosetta Code:
+w = c(  9, 13, 153,  50, 15, 68, 27, 39, 23, 52, 11,
+       32, 24,  48,  73, 42, 43, 22,  7, 18,  4, 30)
+p = c(150, 35, 200, 160, 60, 45, 60, 40, 30, 10, 70,
+       30, 15,  10,  40, 70, 75, 80, 20, 12, 50, 10)
+cap = 400
+system.time(is <- knapsack(w, p, cap))  # 0.001 sec
 }
-\keyword{ optimize }
+}
+\keyword{ discrete-optimization }

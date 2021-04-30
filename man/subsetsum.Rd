@@ -1,5 +1,6 @@
 \name{subsetsum}
 \alias{subsetsum}
+\alias{sss_test}
 \title{
   Subset Sum Problem
 }
@@ -8,23 +9,36 @@
 }
 \usage{
 subsetsum(S, t, method = "greedy")
+
+sss_test(S, t)
 }
 \arguments{
   \item{S}{vector of positive integers.}
-  \item{t}{target value.}
+  \item{t}{target value, bigger than all items in \code{S}.}
   \item{method}{can be ``greedy'' or ``dynamic'', where ``dynamic'' stands
                 for the dynamic programming approach.}
 }
 \details{
-  Searching for a set of elements in \code{S} that sum up to \code{t} by
-  continuously adding more elements of \code{S}.
+  \code{subsetsum} is searching for a set of elements in \code{S} that
+  sum up to \code{t} by continuously adding more elements of \code{S}.
+
+  It is not required that \code{S} is decreasingly sorted. But for reasons
+  of efficiency and smaller execution times it is urgently recommended to
+  sort the item set in decreasing order. See the examples to find out how
+  to handle your data.
 
   The first components will be preferred, i.e., if \code{S} is decreasing,
   the sum with larger elements will be found, if increasing, the sum with
-  smaller elements.
+  smaller elements. Because of timing considerations, the default is to
+  sort decreasingly before processing.
 
   The dynamic method may be faster for large sets, but will also require
-  much more memory if the target value is large.
+  much more memory if the target value is large. 
+
+  \code{sss_test} will find the biggest number below or equal to \code{t}
+  that can be expressed as a sum of items in \code{S}. It will not return
+  any indices. It can be quite fast, though it preprocesses the set \code{S}
+  to be sorted decreasingly, too. 
 }
 \value{
   List with the target value, if reached, and vector of indices of elements
@@ -32,9 +46,14 @@ subsetsum(S, t, method = "greedy")
 
   If no solution is found, the dynamic method will return indices for the
   largest value below the target, the greedy method witll return NULL.
+
+  \code{sss_test} will simply return maximum sum value found.
 }
 \note{
-  Will be replaced by a compiled version.
+  A compiled version -- and much faster, in Fortran -- can be found in
+  package 'knapsack' (R-Forge, project 'optimist') as \code{subsetsum}.
+  A recursive version, returning *all* solutions, is much too slow in R,
+  but is possible in Julia and can be asked from the author.
 }
 \author{
   HwB  email: <hwborchers@googlemail.com>
@@ -47,6 +66,17 @@ subsetsum(S, t, method = "greedy")
   \code{\link{maxsub}}
 }
 \examples{
+t <- 5842
+S <- c(267, 493, 869, 961, 1000, 1153, 1246, 1598, 1766, 1922)
+
+# S is not decreasingly sorted, so ...
+o  <- order(S, decreasing = TRUE)
+So <- S[o]                          # So is decreasingly sorted
+
+sol <- subsetsum(So, t)             # $inds:  2 4 6 7 8  w.r.t.  So
+is  <- o[sol$inds]                  # is:     9 7 5 4 3  w.r.t.  S
+sum(S[is])                          # 5842
+
 \dontrun{
 amount <- 4748652
 products <- 
@@ -66,13 +96,20 @@ prods <- sort(prods, decreasing=TRUE)  # decreasing order
 # now find one solution
 system.time(is <- subsetsum(prods, amount))
 #  user  system elapsed 
-# 0.320   0.032   0.359 
+# 0.030   0.000   0.029 
 
 prods[is]
 #  [1]   70740   70740   71190   76950   77382   80000   83800
 #  [8]   90900  456000  533600  829350 1110000 1198000
 
 sum(prods[is]) == amount
-# [1] TRUE}
+# [1] TRUE
+
+# Timings:
+#             unsorted   decr.sorted
+# "greedy"      22.930         0.030    (therefore the default settings)
+# "dynamic"      2.515         0.860    (overhead for smaller sets)
+# sss_test       8.450         0.040    (no indices returned)
 }
-\keyword{ optimize }
+}
+\keyword{ discrete-optimization }

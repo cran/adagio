@@ -38,26 +38,17 @@ pureCMAES(par, fun, lower = NULL, upper = NULL, sigma = 0.5,
   for several minutes; avoid problem dimensions of 30 and more!
 }
 \references{
-  Hansen, N., and A. Ostermeier (2001). Completely Derandomized Self-Adaptation 
-  in Evolution Strategies. Evolutionary Computation 9(2), pp. 159-195.\cr
-  URL: https://www.lri.fr/~hansen/cmaartic.pdf
-
-  Hansen, N., S.D. Mueller, P. Koumoutsakos (2003). Reducing the Time 
-  Complexity of the Derandomized Evolution Strategy with Covariance Matrix 
-  Adaptation (CMA-ES). Evolutionary Computation 11(1), pp. 1-18.\cr
-  URL: https://www.lri.fr/~hansen/evco_11_1_1_0.pdf
-
   Hansen, N. (2011). The CMA Evolution Strategy: A Tutorial.\cr
-  URL: https://www.lri.fr/~hansen/cmatutorial.pdf
+  \url{https://arxiv.org/abs/1604.00772}
 
   Hansen, N., D.V. Arnold, and A. Auger (2013). Evolution Strategies. 
-  To appear in Janusz Kacprzyk and Witold Pedrycz (Eds.): Handbook of 
-  Computational Intelligence, Springer-Verlag (accepted for publication).\cr
-  URL: https://www.lri.fr/~hansen/es-overview-2014.pdf
+  J. Kacprzyk and W. Pedrycz (Eds.). Handbook of Computational Intelligence,
+  Springer-Verlag, 2015.
 }
 \author{
   Copyright (c) 2003-2010 Nikolas Hansen for Matlab code PURECMAES;
   converted to R by Hans W Borchers.
+  (Hansen's homepage: www.cmap.polytechnique.fr/~nikolaus.hansen/)
 }
 \note{
   There are other implementations of Hansen's CMAES in package `cmaes' 
