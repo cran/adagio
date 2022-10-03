@@ -1,8 +1,8 @@
 Package: adagio
 Type: Package
 Title: Discrete and Global Optimization Routines
-Version: 0.8.4
-Date: 2021-04-30
+Version: 0.8.5
+Date: 2022-09-30
 Authors@R: person("Hans W.", "Borchers", email = "hwborchers@googlemail.com",
                   role = c("aut", "cre"))
 Maintainer: Hans W. Borchers <hwborchers@googlemail.com>
@@ -14,8 +14,11 @@ Description:
 	derivative-free Nelder-Mead and Hooke-Jeeves minimization, and
 	some (evolutionary) global optimization functions.
 License: GPL (>= 3)
-NeedsCompilation: no
-Packaged: 2021-04-30 17:28:14 UTC; hwb
 Author: Hans W. Borchers [aut, cre]
 Repository: CRAN
-Date/Publication: 2021-04-30 19:00:11 UTC
+Repository/R-Forge/Project: optimist
+Repository/R-Forge/Revision: 534
+Repository/R-Forge/DateTimeStamp: 2022-10-03 10:26:01
+Date/Publication: 2022-10-03 13:40:02 UTC
+NeedsCompilation: no
+Packaged: 2022-10-03 10:32:11 UTC; rforge

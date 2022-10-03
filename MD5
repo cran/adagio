@@ -1,12 +1,13 @@
-e3f48e5c5924c2c797ddbc77eb2f40f5 *DESCRIPTION
-eee5fab879bf100e1fb36d9bf92f150a *NAMESPACE
-80ea66caabe9ffd3c837e32fb774fd48 *NEWS
+89ecefca07fca0312c69715bc44a7281 *DESCRIPTION
+eb9560d2263e2d5a665f636ba51d258f *NAMESPACE
+e3bfc0c7a6e4599135ef0f3d6add10a0 *NEWS
 8be7862cf0a4b8b2a8210bb1498f8838 *R/assignment.R
 6be00c860625858214957318fcd892c4 *R/binpacking.R
 352ae4d29230c581f3caed401a9340c8 *R/cmaes.R
 ea81f864b25f9cf6deec45909cb88181 *R/fminviz.R
 7160b272cd05915b3bbd40a27f59358c *R/gradients.R
 ed26da0f8a242eedd71ed6466cedfed7 *R/hamiltonian.R
+a3e3c9f81d9dfa93ca2194b45c69093a *R/historize.R
 f2aa5743af3a0e8da88342b5d154d107 *R/hookejeeves.R
 a2019b193d89d79701abba21bf8a0c9c *R/knapsack.R
 f842fe7ab721077d49dd00889d6039df *R/maxempty.R
@@ -27,6 +28,7 @@ a8cc39dda6ab7cead5d2945d261bb42c *man/binpacking.Rd
 9c91900c41d7c8ed136e5519e884219b *man/cmaes.Rd
 f02eb8a97850184dbf3d30221d983182 *man/fminviz.Rd
 980829d65f2ccb46e6ce2ef402baa371 *man/hamiltonian.Rd
+23986687bef4e3e397c1c7dadd13c6a7 *man/historize.Rd
 5094b24cc63bcc9c976366583694f9b6 *man/hookejeeves.Rd
 b8cd6059a41f362f4c541f4eca82c47b *man/knapsack.Rd
 e7f1766b1cc553f231011650596d73ad *man/maxempty.Rd

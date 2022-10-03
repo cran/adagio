@@ -32,5 +32,6 @@ export(fminviz, flineviz)
 export(transfinite)
 
 export(hamiltonian)
+export(Historize)
 
 # S3/S4 Methods

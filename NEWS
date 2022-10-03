@@ -3,6 +3,10 @@
 ------------------------------------------------------------------------------
 
 
+Changes in Version 0.8.5 (2022-09-30)
+
+  o History() adds storage for variables and values of a function.
+
 Changes in Version 0.8.4 (2021-04-30)
 
   o bpp_approx() solves the Bin Packing Problem approximately.
