@@ -35,7 +35,7 @@ grRastrigin <- function(x) {
 }
 
 
-#-- Nesterov's smooth Chebyshev-Rosenbrock function --------------------------
+#-- Nesterov's non-smooth test functions -------------------------------
 fnNesterov <- function(x) {
     n <- length(x)
     f <- (1 - x[1])^2 / 4
@@ -47,23 +47,30 @@ fnNesterov <- function(x) {
 
 grNesterov <- function(x) {
     n <- length(x)
-    g <- rep(0, n)
+    g <- numeric(n)
     g[1] <- (x[1] - 1) / 2
     for (i in 1:(n-1)) {
-        r = 1 + x[i+1] - 2*x[i]^2
+        r <- 1 + x[i+1] - 2*x[i]^2
         g[i+1] <- g[i+1] + 2*r
         g[i] <- g[i] - 8*x[i]*r
     }
     g
 }
 
-
-#-- Nesterov's non-smooth Chebyshev-Rosenbrock functions ---------------------
 fnNesterov1 <- function(x) {
     n <- length(x)
-    f <- (1 - x[1])^2 / 4
+    f <- (1 - x[1])^2/ 4
     for (i in 1:(n-1)) {
         f <- f + abs(1 + x[i+1] - 2*x[i]^2)
+    }
+    f
+}
+
+fnNesterov2 <- function(x) {
+    n <- length(x)
+    f <- abs(1 - x[1])/ 4
+    for (i in 1:(n-1)) {
+        f <- f + abs(1 + x[i+1] - 2*abs(x[i]))
     }
     f
 }
@@ -73,18 +80,19 @@ fnNesterov1 <- function(x) {
 # xmin = (0.99987763,  0.25358844, -0.74660757,  0.24520150, -0.03749029 )
 # fmin = 0.0001223713
 initHald <- function(x) {
-    stopifnot(is.numeric(x), length(x) == 5)
     i <- 1:21
     t <- -1 + (i - 1)/10
     (x[1] + x[2] * t) / ( 1 + x[3]*t + x[4]*t^2 + x[5]*t^3 ) - exp(t)
 }
 
 fnHald <- function(x) {
+    stopifnot(is.numeric(x), length(x) == 5)
     f <- initHald(x)
     max(abs(f))
 }
 
 grHald <- function(x) {
+    stopifnot(is.numeric(x), length(x) == 5)
     g <- rep(NA, 5)
     f <- initHald(x)
     k <- which.max(abs(f))

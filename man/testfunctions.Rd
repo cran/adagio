@@ -6,6 +6,7 @@
 \alias{fnNesterov}
 \alias{grNesterov}
 \alias{fnNesterov1}
+\alias{fnNesterov2}
 \alias{fnHald}
 \alias{grHald}
 \alias{fnShor}
@@ -27,6 +28,7 @@ grRastrigin(x)
 fnNesterov(x)
 grNesterov(x)
 fnNesterov1(x)
+fnNesterov2(x)
 fnHald(x)
 grHald(x)
 fnShor(x)
@@ -50,7 +52,12 @@ also be regarded as a least-squares problem:
 \bold{Nesterov} -- Nesterov's smooth adaptation of Rosenbrock, based on the 
 idea of Chebyshev polynomials. This function is even more difficult to 
 optimize than Rosenbrock's:
-\deqn{(x_1 - 1)^2 / 4 + \sum_{i=1}^{n-1} (1 + x_{i+1} - 2 x_i^2)}
+\deqn{(1 - x_1)^2 / 4 + \sum_{i=1}^{n-1} (1 + x_{i+1} - 2 x_i^2)^2}
+Two nonsmooth Nesterov functions are available: Nesterov2 and Nesterov1,
+defined as
+\deqn{(1 - x_1)^2 / 4 + \sum_{i=1}^{n-1} |1 + x_{i+1} - 2 x_i^2|}
+\deqn{|1 - x_1| / 4 + \sum_{i=1}^{n-1} (|1 + x_{i+1} - 2 |x_i||}
+
 \tabular{ll}{
   No. of Vars.: \tab n >= 2 \cr
   Bounds: \tab -5.12 <= xi <= 5.12 \cr
@@ -59,7 +66,7 @@ optimize than Rosenbrock's:
   Solution: \tab xi = 1, i = 1:n \cr
 }
 
-\bold{Nesterov1} -- Simlar to \code{Nesterov}, except the terms added are taken with absolute value, which makes this function nonsmooth and painful for gradient-based optimization routines; no gradient prpovided.
+\bold{Nesterov1} and \bold{Nesterov2} -- Simlar to \code{Nesterov}, except the terms added are taken with absolute value, which makes this function nonsmooth and painful for gradient-based optimization routines; no gradient provided.\cr (Nesterov2 uses absolute instead of quadratic terms.)
 
 \bold{Rastrigin} -- Rastrigin's function is a famous, non-convex example from 1989 for global optimization. It is a typical example of a multimodal function with many local minima:
   \deqn{10 n + \sum_1^n (x_i^2 - 10 \cos(2 \pi x_i))}
@@ -73,8 +80,8 @@ optimize than Rosenbrock's:
 
 \bold{Hald} -- Hald's function is a typical example of a non-smooth test
 function, from Hald and Madsen in 1981.
-\deqn{\max_{1 \le i \le n} \frac{x_1 + x_2 t_i}{1 + x_3 t_i + x_4 t_i^2 + x_5 t_i^3} - \exp(t_i)}
-where \eqn{t_i = -1 + (i - 1)/10} for \eqn{1 \le i \le 21}.
+\deqn{\max_{1 \le i \le n} | \frac{x_1 + x_2 t_i}{1 + x_3 t_i + x_4 t_i^2 + x_5 t_i^3} - \exp(t_i)|}
+where \eqn{n = 21} and \eqn{t_i = -1 + (i - 1)/10} for \eqn{1 \le i \le 21}.
 \tabular{ll}{
   No. of Vars.: \tab n =5 \cr
   Bounds: \tab -1 <= xi <= 1 \cr
